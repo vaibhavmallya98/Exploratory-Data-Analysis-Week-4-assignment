@@ -1,0 +1,8 @@
+dat_em<-readRDS("summarySCC_PM25.rds")
+scc<-readRDS("Source_Classification_Code.rds")
+dbc<-subset(dat_em,dat_em$fips=="24510"&dat_em$type=="ON-ROAD")
+ybc<-aggregate(dbc$Emissions,by=list(dbc$year),FUN=sum)
+colnames(ybc)<-c("Year","Emissions")
+png(filename="plot5.png")
+plot(ybc$Year,ybc$Emissions,type = "o",xlab = "year",ylab = "Emissions (tons)",main = "Motor Vehicle Emissions of PM2.5",sub = "Baltimore")
+dev.off()
