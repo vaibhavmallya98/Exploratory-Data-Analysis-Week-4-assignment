@@ -1,0 +1,7 @@
+  dat_em<-readRDS("summarySCC_PM25.rds")
+  scc<-readRDS("Source_Classification_Code.rds")
+  dat_b<- subset(dat_em,dat_em$fips=="24510")
+  dat_b_y<- aggregate(dat_b$Emissions,by=list(dat_b$year),FUN=sum)
+  png(filename="plot2.png")
+  plot(dat_b_y$Group.1,dat_b_y$x,type="l",main="Total Emissions of PM2.5",xlab="year",ylab="Total Emissions (tons)")
+  dev.off()
